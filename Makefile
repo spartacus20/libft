@@ -1,18 +1,23 @@
 # NAME, all, clean, fclean, re
 
-NAME = libft
-OBJS = *.c *.h
+NAME = libft.a
+OBJS = ft_*.c *.h
 CFLAGS= -Wall -Wextra -Werror
-
 
 all: $(NAME)
 
 $(NAME):
-	@gcc  $(CFLAGS) $(OBJS) -o $(NAME)
+	@cc -c $(OBJS)
+	@ar rcs $(NAME) *.o
+
+test:
+	norminette ft_*.c
+	cc $(CFLAGS) main.c libft.a
 
 re: fclean all
 
-fclean:
+fclean: clean
+	@rm -f libft.h.gch
 	@rm -f $(NAME)
 
 clean :
