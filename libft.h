@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:54:07 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/10/31 19:38:50 by jotomas-         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:45:58 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 int		ft_toupper(int ch);
+int		ft_tolower(int ch);
+char	*ft_strchr(const char *s, int c);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif

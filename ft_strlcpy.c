@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:05:04 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/10/30 19:09:02 by jotomas-         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:13:18 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	i;
 
 	i = 0;
-	while (i < size)
+	while (src[i] != '\0' && i < size)
 	{
 		dst[i] = src[i];
 		i++;

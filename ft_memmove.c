@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:29:33 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/10/31 12:03:51 by jotomas-         ###   ########.fr       */
+/*   Updated: 2023/11/03 14:48:15 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,22 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*str_dest;
-	char	*str_src;
+	char		*str_dest;
+	const char	*str_src;
 
-	str_dest = (char *)dest;
-	str_src = (char *)src;
-	if (str_dest <= str_src)
+	str_dest = dest;
+	str_src = src;
+	if (str_src <= str_dest)
 	{
-		while (n--)
-		{
-			str_dest[n] = str_src[n];
-		}
+		str_dest += n;
+		str_src += n;
+		while (n-- > 0)
+			*--str_dest = *--str_src;
 	}
 	else
 	{
-		while (n--)
-		{
-			str_dest[n - 1] = str_src[n - 1];
-		}
+		while (n-- > 0)
+			*str_dest++ = *str_src++;
 	}
-	printf("sizeof: %lu\n", sizeof(str_dest));
 	return (dest);
 }

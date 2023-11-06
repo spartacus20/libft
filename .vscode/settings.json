@@ -59,6 +59,8 @@
   "files.associations": {
     "*.embeddedhtml": "html",
     "stdio.h": "c",
-    "libft.h": "c"
+    "libft.h": "c",
+    "string.h": "c",
+    "ctype.h": "c"
   }
 }

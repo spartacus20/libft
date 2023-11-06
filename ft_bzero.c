@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:40:13 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/10/31 19:36:32 by jotomas-         ###   ########.fr       */
+/*   Updated: 2023/11/03 14:18:23 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(s + n, 0, sizeof(s));
+	ft_memset(s, 0, n);
 }

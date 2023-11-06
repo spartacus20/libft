@@ -14,7 +14,11 @@ test:
 	norminette ft_*.c
 	cc $(CFLAGS) main.c libft.a
 
-re: fclean all
+verify:
+	./a.out | grep -C 4 "FAILED"
+
+
+re: fclean all test
 
 fclean: clean
 	@rm -f libft.h.gch
@@ -23,4 +27,4 @@ fclean: clean
 clean :
 	@rm -f *.o
 
-.PHONY: clean fclean re all
+.PHONY: clean fclean re all test verify
