@@ -8,7 +8,9 @@ all: $(NAME)
 
 $(NAME):
 	@cc -c $(OBJS)
-	@ar rcs $(NAME) *.o
+	@mkdir obj
+	@mv  *.o obj
+	@ar rcs $(NAME) ./obj/*.o
 
 test:
 	norminette ft_*.c
@@ -25,6 +27,6 @@ fclean: clean
 	@rm -f $(NAME)
 
 clean :
-	@rm -f *.o
+	@rm -r obj
 
 .PHONY: clean fclean re all test verify

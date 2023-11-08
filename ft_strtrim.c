@@ -1,26 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 12:22:59 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/06 14:51:33 by jotomas-         ###   ########.fr       */
+/*   Created: 2023/11/07 18:33:05 by jotomas-          #+#    #+#             */
+/*   Updated: 2023/11/08 12:53:05 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	while (*s != 0)
+	char	*rptr;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	rptr = (char *)malloc(ft_strlen(s1) + 1);
+	if (!rptr)
+		return (NULL);
+	while (s1[j] != '\0')
 	{
-		if (*s == c)
-			return ((char *)s);
-		s++;
+		if (strchr(set, s1[j]) != NULL)
+		{
+			j++;
+		}
+		else
+		{
+			rptr[i] = s1[j];
+			i++;
+			j++;
+		}
 	}
-	return ("");
+	rptr[i] = '\0';
+	return (rptr);
 }

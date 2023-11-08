@@ -23,6 +23,16 @@ void assert_string(char *str1, char *str2) {
 	}
 }
 
+void assert_ptr(const void *actual, const void *expected) {
+    if (actual == expected) {
+        printf("\033[32mPASSED\033[0m\n"); // Verde si pasa
+    } else {
+        printf("\033[31mFAILED\033[0m\n"); // Rojo si falla
+        printf("Expected: %p\n", expected);
+        printf("Actual: %p\n", actual);
+    }
+}
+
 void assert_stringN(char *str1, char *str2, size_t n) {
       if (strncmp(str1, str2, n) == 0) {
         printf("\033[32mPASSED\033[0m\n"); // Verde si pasa
@@ -104,7 +114,25 @@ size_t strlcpy(char *dst, const char *src, size_t dsize)
 	return(src - osrc - 1);	/* count does not include NUL */
 }
 
+char *strnstr(const char *s, const char *find, size_t slen)
+{
+	char c, sc;
+	size_t len;
 
+	if ((c = *find++) != '\0') {
+		len = strlen(find);
+		do {
+			do {
+				if (slen-- < 1 || (sc = *s++) == '\0')
+					return (NULL);
+			} while (sc != c);
+			if (len > slen)
+				return (NULL);
+		} while (strncmp(s, find, len) != 0);
+		s--;
+	}
+	return ((char *)s);
+}
 
 
 void test_isalpha() {
@@ -503,7 +531,7 @@ void test_strchr(){
 }
 
 void test_strncmp(){
-     printf("\n===================FT_STRCHR=======================\n\n");
+     printf("\n===================FT_STRNCMP=======================\n\n");
     // TEST 1
     printf("TEST 1\n\n");
     char *str = "42 London";
@@ -542,6 +570,290 @@ void test_strncmp(){
 }
 
 
+void test_memchr(){
+
+
+    printf("\n===================FT_MEMCHR=======================\n\n");
+    // TEST 1
+    printf("TEST 1\n\n");
+    const char str1[] = "42 london 123";
+    const char ch1 = ' ';
+    char *ret1;
+    char *ret2;
+
+    ret1 = strchr(str1, ch1);
+    ret2 = ft_strchr(str1, ch1);
+    assert_string(ret1, ret2);
+
+
+    printf("\nTEST 2\n\n");
+    const char str2[] = "42 london 123";
+    const char ch2 = '\0';
+
+    ret1 = strchr(str2, ch2);
+    ret2 = ft_strchr(str2, ch2);
+    assert_string(ret1, ret2);
+
+
+
+    printf("\nTEST 3\n\n");
+    const char str3[] = "42\nlondon\n123";
+    const char ch3 = '\n';
+
+
+    ret1 = strchr(str3, ch3);
+    ret2 = ft_strchr(str3, ch3);
+    assert_string(ret1, ret2);
+
+
+}
+
+
+
+void test_memcmp(){
+     printf("\n===================FT_MEMCMP=======================\n\n");
+    // TEST 1
+    printf("TEST 1\n\n");
+    char *str = "42 London";
+    char *str2 = "42 London";
+    int n = 10;
+    assert_int(ft_memcmp(str, str2, n), memcmp(str, str2, n));
+
+    printf("\nTEST 2\n\n");
+    str = "42";
+    str2 = "42 London";
+    n = 10;
+    assert_int(ft_memcmp(str, str2, n), memcmp(str, str2, n));
+
+
+    printf("\nTEST 3\n\n");
+    str = "42 London";
+    str2 = "42";
+    n = 10;
+    assert_int(ft_memcmp(str, str2, n), memcmp(str, str2, n));
+
+
+    printf("\nTEST 4\n\n");
+    str = "43";
+    str2 = "42";
+    n = 10;
+    assert_int(ft_memcmp(str, str2, n), memcmp(str, str2, 2));
+
+    printf("\nTEST 5\n\n");
+    str = "42";
+    str2 = "43";
+    n = 10;
+    assert_int(ft_memcmp(str, str2, n), memcmp(str, str2, 2));
+
+
+}
+
+
+void test_strnstr() {
+    printf("\n===================FT_STRNSTR=======================\n\n");
+
+    // TEST 1
+    printf("TEST 1\n\n");
+    char *haystack = "Esta es una cadena de ejemplo";
+    char *needle = "cadena";
+    size_t len = 20;
+    assert_ptr(ft_strnstr(haystack, needle, len), strnstr(haystack, needle, len));
+
+    // TEST 2
+    printf("\nTEST 2\n\n");
+    haystack = "Esta es otra cadena de prueba";
+    needle = "otra";
+    len = 25;
+    assert_ptr(ft_strnstr(haystack, needle, len), strnstr(haystack, needle, len));
+
+    // Agrega más pruebas aquí si es necesario
+
+}
+
+
+void test_atoi() {
+    printf("\n===================FT_ATOI=======================\n\n");
+
+    // TEST 1
+    printf("TEST 1\n\n");
+    const char *str1 = "123";
+    assert_int(ft_atoi(str1), 123);
+
+    // TEST 2
+    printf("\nTEST 2\n\n");
+    const char *str2 = "-456";
+    assert_int(ft_atoi(str2), -456);
+
+    // TEST 3
+    printf("\nTEST 3\n\n");
+    const char *str3 = "0";
+    assert_int(ft_atoi(str3), 0);
+
+    // TEST 4
+    printf("\nTEST 4\n\n");
+    const char *str4 = "  789";
+    assert_int(ft_atoi(str4), 789);
+
+    // TEST 5
+    printf("\nTEST 5\n\n");
+    const char *str5 = "abc123";
+    assert_int(ft_atoi(str5), 0);
+}
+
+void test_strdup() {
+    printf("\n===================FT_STRDUP=======================\n\n");
+
+    // TEST 1
+    printf("TEST 1\n\n");
+     char *str1 = "Hello, World!";
+    char *result1 = ft_strdup(str1);
+     char *expected1 = "Hello, World!";
+    assert_string(result1, expected1);
+
+    // TEST 2
+    printf("\nTEST 2\n\n");
+     char *str2 = "";
+    char *result2 = ft_strdup(str2);
+     char *expected2 = "";
+    assert_string(result2, expected2);
+
+    // TEST 3
+    printf("\nTEST 3\n\n");
+     char *str3 = "12345";
+    char *result3 = ft_strdup(str3);
+     char *expected3 = "12345";
+    assert_string(result3, expected3);
+
+
+    // Free the allocated memory
+    free(result1);
+    free(result2);
+    free(result3);
+}
+
+void test_substr() {
+    printf("\n===================FT_SUBSTR=======================\n\n");
+
+    // TEST 1
+    printf("TEST 1\n\n");
+    const char *str1 = "Hello, World!";
+    char *result1 = ft_substr(str1, 0, 5);
+    char *expected1 = "Hello";
+    assert_string(result1, expected1);
+    free(result1);
+
+    // TEST 2
+    printf("\nTEST 2\n\n");
+    const char *str2 = "Substring test";
+    char *result2 = ft_substr(str2, 10, 4);
+    char *expected2 = "test";
+    assert_string(result2, expected2);
+    free(result2);
+
+    // TEST 3
+    printf("\nTEST 3\n\n");
+    const char *str3 = "12345";
+    char *result3 = ft_substr(str3, 1, 3);
+    char *expected3 = "234";
+    assert_string(result3, expected3);
+    free(result3);
+
+    // TEST 4
+    printf("\nTEST 4\n\n");
+    const char *str4 = "Sub";
+    char *result4 = ft_substr(str4, 0, 10);
+    char *expected4 = "Sub";
+    assert_string(result4, expected4);
+    free(result4);
+
+    // TEST 5
+    printf("\nTEST 5\n\n");
+    const char *str5 = 0;
+    char *result5 = ft_substr(str5, 0, 5);
+    // char *expected5 = NULL;
+    printf("%s", str5);
+    free(result5);
+}
+
+void test_strjoin() {
+    printf("\n===================FT_STRJOIN=======================\n\n");
+
+    // TEST 1
+    printf("TEST 1\n\n");
+    char *s1 = "Hello, ";
+    char *s2 = "World!";
+    char *result1 = ft_strjoin(s1, s2);
+    char *expected1 = "Hello, World!";
+    assert_string(result1, expected1);
+    free(result1);
+
+    // TEST 2
+    printf("\nTEST 2\n\n");
+    char *s3 = "Concatenation ";
+    char *s4 = "Test";
+    char *result2 = ft_strjoin(s3, s4);
+    char *expected2 = "Concatenation Test";
+    assert_string(result2, expected2);
+    free(result2);
+
+    // TEST 3
+    printf("\nTEST 3\n\n");
+    char *s5 = "";
+    char *s6 = "Non-Empty";
+    char *result3 = ft_strjoin(s5, s6);
+    char *expected3 = "Non-Empty";
+    assert_string(result3, expected3);
+    free(result3);
+
+    // TEST 4
+    printf("\nTEST 4\n\n");
+    char *s7 = "Empty";
+    char *s8 = "";
+    char *result4 = ft_strjoin(s7, s8);
+    char *expected4 = "Empty";
+    assert_string(result4, expected4);
+    free(result4);
+}
+
+void test_strtrim() {
+    printf("\n===================FT_STRTRIM=======================\n\n");
+
+    // TEST 1
+    printf("TEST 1\n\n");
+    char *s1 = "   Hello, World!   ";
+    char *set1 = " ";
+    char *result1 = ft_strtrim(s1, set1);
+    char *expected1 = "Hello,World!";
+    assert_string(result1, expected1);
+    free(result1);
+
+    // TEST 2
+    printf("\nTEST 2\n\n");
+    char *s2 = "ABCDEF";
+    char *set2 = "XYZ";
+    char *result2 = ft_strtrim(s2, set2);
+    char *expected2 = "ABCDEF";
+    assert_string(result2, expected2);
+    free(result2);
+
+    // TEST 3
+    printf("\nTEST 3\n\n");
+    char *s3 = "123!@#";
+    char *set3 = "123!@#";
+    char *result3 = ft_strtrim(s3, set3);
+    char *expected3 = "";
+    assert_string(result3, expected3);
+    free(result3);
+
+    // TEST 4
+    printf("\nTEST 4\n\n");
+    char *s4 = "  Testing   ";
+    char *set4 = " ";
+    char *result4 = ft_strtrim(s4, set4);
+    char *expected4 = "Testing";
+    assert_string(result4, expected4);
+    free(result4);
+}
 
 
 
@@ -561,6 +873,14 @@ int main() {
     test_strlcat();
     test_strchr();
     test_strncmp();
+    test_memchr();
+    test_memcmp();
+    test_strnstr();
+    test_atoi();
+    test_strdup();
+    test_substr();
+    test_strjoin();
+    test_strtrim();
 
     return 0;
 }

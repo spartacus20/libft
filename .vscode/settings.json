@@ -61,6 +61,7 @@
     "stdio.h": "c",
     "libft.h": "c",
     "string.h": "c",
-    "ctype.h": "c"
+    "ctype.h": "c",
+    "stdlib.h": "c"
   }
 }

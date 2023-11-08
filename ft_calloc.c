@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 12:22:59 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/06 14:51:33 by jotomas-         ###   ########.fr       */
+/*   Created: 2023/11/07 12:29:01 by jotomas-          #+#    #+#             */
+/*   Updated: 2023/11/07 12:32:42 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	while (*s != 0)
-	{
-		if (*s == c)
-			return ((char *)s);
-		s++;
-	}
-	return ("");
+	char	*ptr;
+
+	if (nmemb == 0 || size == 0)
+		return (NULL);
+	ptr = malloc(nmemb * size);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
 }
