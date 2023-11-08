@@ -12,12 +12,6 @@ $(NAME):
 	@mv  *.o obj
 	@ar rcs $(NAME) ./obj/*.o
 
-test:
-	norminette ft_*.c
-	cc $(CFLAGS) main.c libft.a
-
-verify:
-	./a.out | grep -C 4 "FAILED"
 
 
 re: fclean all test
@@ -29,4 +23,4 @@ fclean: clean
 clean :
 	@rm -r obj
 
-.PHONY: clean fclean re all test verify
+.PHONY: clean fclean re all
