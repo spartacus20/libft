@@ -1,30 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 16:07:38 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/09 12:58:41 by jotomas-         ###   ########.fr       */
+/*   Created: 2023/11/09 15:41:40 by jotomas-          #+#    #+#             */
+/*   Updated: 2023/11/10 12:09:40 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <ctype.h>
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+static char	*str_new(size_t n)
 {
-	size_t		i;
-	char		*str_dest;
-	const char	*str_src;
+	char	*arr;
 
-	str_dest = dest;
-	str_src = src;
+	arr = (char *)malloc(sizeof(char) * (n + 1));
+	if (!arr)
+		return (NULL);
+	return (arr);
+}
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+
+{
+	char	*arr;
+	size_t	len;
+	size_t	i;
+
+	if (!s || !f)
+		return (NULL);
+	len = ft_strlen(s);
+	arr = str_new(len);
+	if (!arr)
+		return (NULL);
 	i = 0;
-	while (i < n)
+	while (i < len)
 	{
-		str_dest[i] = str_src[i];
+		arr[i] = (*f)(i, s[i]);
 		i++;
 	}
-	return (dest);
+	arr[i] = '\0';
+	return (arr);
 }
