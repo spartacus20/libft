@@ -6,13 +6,13 @@
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:38:44 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/07 12:16:47 by jotomas-         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:12:48 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	whitespaces(const char *str, int *ptr_i)
+static int	whitespaces(const char *str, int *ptr_i)
 {
 	int	count;
 	int	i;

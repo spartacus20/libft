@@ -1,6 +1,7 @@
 a.out
 libft.a
 libft.h.gch
+libft.so
 .vscode/settings.json
 .credentials
 test

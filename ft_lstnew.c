@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 19:50:02 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/14 12:15:22 by jotomas-         ###   ########.fr       */
+/*   Created: 2023/11/14 14:04:24 by jotomas-          #+#    #+#             */
+/*   Updated: 2023/11/14 14:45:30 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int ch)
+t_list	*ft_lstnew(void *content)
 {
-	if (ch >= 'A' && ch <= 'Z')
-		return (ch + 32);
-	return (ch);
+	t_list	*node;
+
+	node = (t_list *)malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
+	node->content = content;
+	node->next = NULL;
+	return (node);
 }

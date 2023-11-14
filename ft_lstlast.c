@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 19:50:02 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/14 12:15:22 by jotomas-         ###   ########.fr       */
+/*   Created: 2023/11/14 14:53:49 by jotomas-          #+#    #+#             */
+/*   Updated: 2023/11/14 16:47:23 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int ch)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (ch >= 'A' && ch <= 'Z')
-		return (ch + 32);
-	return (ch);
+	while (lst)
+	{
+		if (!lst->next)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
 }

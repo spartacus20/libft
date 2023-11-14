@@ -6,65 +6,89 @@
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:27:10 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/09 13:00:18 by jotomas-         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:14:43 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_elements(char const *s, char c)
+static size_t	count_elements(char const *s, char c)
 {
-	int	i;
-	int	count;
+	size_t	count;
+	size_t	i;
 
+	count = 0;
 	i = 0;
-	count = 1;
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		if (s[i] == c)
+		if (s[i] != c)
 		{
 			count++;
-			while (s[i] == c)
+			while (s[i] && s[i] != c)
 				i++;
 		}
-		i++;
+		else if (s[i] == c)
+			i++;
 	}
 	return (count);
 }
 
-char	*allocate_memmory(char *arr, int count)
+static size_t	get_wlen(char const *s, char c)
 {
-	arr = (char *)malloc(sizeof(char) * (count + 1));
-	if (!arr)
-		return (NULL);
+	size_t	i;
+
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	return (i);
+}
+
+static void	free_mem(size_t i, char **arr)
+{
+	while (i > 0)
+	{
+		i--;
+		free(arr[i]);
+	}
+	free(arr);
+}
+
+static char	**split(char const *s, char c, char **arr, size_t count)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (i < count)
+	{
+		while (s[j] && s[j] == c)
+			j++;
+		arr[i] = ft_substr(s, j, get_wlen(&s[j], c));
+		if (!arr[i])
+		{
+			free_mem(i, arr);
+			return (NULL);
+		}
+		while (s[j] && s[j] != c)
+			j++;
+		i++;
+	}
+	arr[i] = NULL;
 	return (arr);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**arr;
-	int		count;
-	int		j;
-	int		i;
+	size_t	words;
 
-	count = count_elements(s, c);
-	i = 0;
-	arr = (char **)malloc(sizeof(char *) * (count + 1));
+	if (!s)
+		return (NULL);
+	words = count_elements(s, c);
+	arr = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!arr)
 		return (NULL);
-	while (i < count)
-	{
-		j = 0;
-		while (s[j] != c && s[j] != '\0')
-			j++;
-		arr[i] = allocate_memmory(arr[i], j);
-		ft_memcpy(arr[i], s, j);
-		arr[i][j] = '\0';
-		s += j;
-		while (*s == c)
-			s++;
-		i++;
-	}
-	arr[i] = 0;
+	arr = split(s, c, arr, words);
 	return (arr);
 }

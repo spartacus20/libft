@@ -6,14 +6,14 @@
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:09:13 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/09 17:50:13 by jotomas-         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:13:36 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
 
-long long	number_size(long long n)
+static long long	number_size(long long n)
 {
 	int	len;
 
@@ -28,7 +28,7 @@ long long	number_size(long long n)
 	return (len);
 }
 
-char	*str_new(size_t n)
+static char	*str_new(size_t n)
 {
 	char	*arr;
 

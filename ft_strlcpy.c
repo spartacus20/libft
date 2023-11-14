@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:05:04 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/03 15:13:18 by jotomas-         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:53:21 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	i;
 
 	i = 0;
-	while (src[i] != '\0' && i < size)
+	if (size == 0)
+		return (ft_strlen(src));
+	while (src[i] != '\0' && i < size - 1)
 	{
 		dst[i] = src[i];
 		i++;
 	}
 	dst[i] = '\0';
-	return (i);
+	return (ft_strlen(src));
 }
