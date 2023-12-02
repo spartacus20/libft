@@ -1,4 +1,5 @@
-# Libft Introduction
+# Libft Introduction![Deserto Safari Miniatura do YouTube](https://github.com/spartacus20/libft/assets/60814237/82943823-89e9-448c-a3d1-b0c95899b738)
+
 
 Libft (Library of Functions)
 
