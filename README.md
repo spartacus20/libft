@@ -1,6 +1,6 @@
 
-Libft (Library of ![Deserto Safari Miniatura do YouTube](https://github.com/spartacus20/libft/assets/60814237/5cb59e72-c922-4bc4-867c-1ae25baa35e1)
-Functions)
+ ![Deserto Safari Miniatura do YouTube](https://github.com/spartacus20/libft/assets/60814237/5cb59e72-c922-4bc4-867c-1ae25baa35e1)
+
 
 This is my own C library
 
