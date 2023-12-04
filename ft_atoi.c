@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:38:44 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/14 12:12:48 by jotomas-         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:06:09 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static int	whitespaces(const char *str, int *ptr_i)
 	count = 1;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	while (str[i] && (str[i] == 43 || str[i] == 45))
+	if (str[i] && (str[i] == '+' || str[i] == '-'))
 	{
-		if (str[i] == 45)
+		if (str[i] == '-')
 			count *= -1;
 		i++;
 	}
@@ -39,10 +39,10 @@ int	ft_atoi(const char *str)
 
 	result = 0;
 	sign = whitespaces(str, &i);
-	while (str[i] && str[i] >= 48 && str[i] <= 57)
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
 		result *= 10;
-		result += str[i] - 48;
+		result += str[i] - '0';
 		i++;
 	}
 	result *= sign;

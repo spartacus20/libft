@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:19:09 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/14 16:57:09 by jotomas-         ###   ########.fr       */
+/*   Updated: 2023/11/15 11:39:12 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = ft_lstsize(lst);

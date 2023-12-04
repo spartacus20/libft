@@ -6,23 +6,19 @@
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:29:01 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/14 13:36:07 by jotomas-         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:26:40 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t n, size_t size)
 {
-	char	*ptr;
+	void	*ptr;
 
-	ptr = (char *)malloc(nmemb * size);
+	ptr = malloc(n * size);
 	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, nmemb * size);
+	ft_bzero(ptr, n * size);
 	return (ptr);
-}
-
-int main() {
-	return 0;
 }

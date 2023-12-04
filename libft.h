@@ -6,7 +6,7 @@
 /*   By: jotomas- <jotomas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:54:07 by jotomas-          #+#    #+#             */
-/*   Updated: 2023/11/14 16:59:07 by jotomas-         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:05:56 by jotomas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <ctype.h>
+# include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -41,6 +42,7 @@ size_t				ft_strlcat(char *dst, const char *src, size_t size);
 int					ft_toupper(int ch);
 int					ft_tolower(int ch);
 char				*ft_strchr(const char *s, int c);
+char				*ft_strrchr(char const *str, int c);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 void				*ft_memrchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -68,4 +70,6 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
+void				*ft_calloc(size_t n, size_t size);
+void				ft_striteri(char *s, void (*f)(unsigned int index, char *));
 #endif
